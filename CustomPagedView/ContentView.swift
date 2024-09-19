@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-	let availableDynamics: [any PagingDynamics.Type] = [SimplestPagingDynamics.self, WithSnappingPagingDynamics.self]
+	let availableDynamics: [any PagingDynamics.Type] = [SimplestPagingDynamics.self, WithSnappingPagingDynamics.self, VelocityBasedPagingDynamics.self]
 	
 	@State var selectedDynamicsIndex = 0
 	var selectedDynamics: any PagingDynamics.Type {
