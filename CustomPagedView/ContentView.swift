@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-	let availableDynamics: [any PagingDynamics.Type] = [SimplestPagingDynamics.self]
+	let availableDynamics: [any PagingDynamics.Type] = [SimplestPagingDynamics.self, WithSnappingPagingDynamics.self]
 	
 	@State var selectedDynamicsIndex = 0
 	var selectedDynamics: any PagingDynamics.Type {
@@ -17,8 +17,10 @@ struct ContentView: View {
 	
     var body: some View {
 		NavigationStack {
-			PagedView(dynamics: selectedDynamics.init())
-				.id(selectedDynamicsIndex)
+			GeometryReader { geometry in
+				PagedView(pageWidth: geometry.size.width, dynamics: selectedDynamics.init())
+					.id(selectedDynamicsIndex)
+			}
 			.toolbar {
 				ToolbarItem(placement: .topBarLeading) {
 					Picker("Paging dynamic", selection: $selectedDynamicsIndex) {

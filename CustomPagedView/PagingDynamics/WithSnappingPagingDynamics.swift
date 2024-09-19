@@ -1,5 +1,5 @@
 //
-//  SimplestPagingDynamics.swift
+//  WithSnappingPagingDynamics.swift
 //  CustomPagedView
 //
 //  Created by Nathan Manceaux-Panot on 2024-09-13.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct SimplestPagingDynamics: PagingDynamics {
+struct WithSnappingPagingDynamics: PagingDynamics {
 	var pageWidth: CGFloat = 0
 	
 	var scrollAmount: CGFloat = 0
@@ -19,17 +19,22 @@ struct SimplestPagingDynamics: PagingDynamics {
 		dragInitialScrollAmount = scrollAmount
 	}
 	mutating func update(gestureState: DragGesture.Value?) {
-		guard
+		if
 			let gestureState,
 			let dragInitialScrollAmount
-		else { return }
-		
-		// When finger moves, offset pages along with it
-		scrollAmount = dragInitialScrollAmount + gestureState.translation.width
+		{
+			// User is dragging: offset pages
+			scrollAmount = dragInitialScrollAmount + gestureState.translation.width
+		} else {
+			// User is not dragging: snap to closest page
+			let closestPageIndex = ((-scrollAmount) / pageWidth).rounded()
+			let closestPageScrollAmount = closestPageIndex * -pageWidth
+			scrollAmount += (closestPageScrollAmount - scrollAmount) / 8
+		}
 	}
 	mutating func endDrag(gestureState: DragGesture.Value) {
 		dragInitialScrollAmount = nil
 	}
-	
-	static var name = "Simplest"
+
+	static var name = "With snapping"
 }

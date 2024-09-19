@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PagedView: View {
+	let pageWidth: CGFloat
 	let updateTimer = Timer.publish(every: 1 / 120, on: .main, in: .common).autoconnect()
 	
 	@State var dynamics: any PagingDynamics
@@ -94,11 +95,14 @@ struct PagedView: View {
 				})
 		)
 		.onReceive(updateTimer) { _ in
+			dynamics.pageWidth = pageWidth
 			dynamics.update(gestureState: dragGestureState)
 		}
     }
 }
 
 #Preview {
-	PagedView(dynamics: SimplestPagingDynamics())
+	GeometryReader { geometry in
+		PagedView(pageWidth: geometry.size.width, dynamics: WithSnappingPagingDynamics())
+	}
 }

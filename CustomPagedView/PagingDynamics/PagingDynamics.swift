@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 protocol PagingDynamics {
+	var pageWidth: CGFloat { get set }
+	
 	var scrollAmount: CGFloat { get }
 	
 	init()
