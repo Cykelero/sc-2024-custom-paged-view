@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A7F5FB812C9DADDD0046085B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A7F5FB802C9DADDA0046085B /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		A7B6C6082C947DBB00805873 /* CustomPagedView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomPagedView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7F5FB802C9DADDA0046085B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +37,7 @@
 		A7B6C5FF2C947DBB00805873 = {
 			isa = PBXGroup;
 			children = (
+				A7F5FB802C9DADDA0046085B /* README.md */,
 				A7B6C60A2C947DBB00805873 /* CustomPagedView */,
 				A7B6C6092C947DBB00805873 /* Products */,
 			);
@@ -109,6 +115,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F5FB812C9DADDD0046085B /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
